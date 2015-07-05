@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title bunnylol.rb
+  %body
+    %p
+      %form
+        %input{ type: 'text', name: 'q' }
+        %input{ type: 'submit' }
+    %table
+      - @help.each do |name, help|
+        %tr
+          %td
+            %strong
+              = name
+          %td
+            = help
