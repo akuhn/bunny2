@@ -1,8 +1,8 @@
-# bunnylol.rb
+# bunny2.rb
 
 Smart bookmarks for your browser.
 
-Inspired by [github.com/ccheever/bunny1](https://github.com/ccheever/bunny1)
+Inspired by [ccheever/bunny1](https://github.com/ccheever/bunny1)
 
 ## Setup
 
@@ -10,5 +10,5 @@ Inspired by [github.com/ccheever/bunny1](https://github.com/ccheever/bunny1)
 - Run `bundle install`
 - Run `shotgun`
 - Visit `http://localhost:9393` (automagically registers as search engine)
-- Go to preferences and makes bunnylol your default search engine.
+- Go to preferences and make bunny your default search engine.
 - Done!
