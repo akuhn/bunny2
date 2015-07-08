@@ -2,6 +2,8 @@
 
 Smart bookmarks for your browser.
 
+Inspired by [github.com/ccheever/bunny1](https://github.com/ccheever/bunny1)
+
 ## Setup
 
 - Clone this repo
