@@ -60,3 +60,7 @@ get '/' do
     instance_exec &commands['default']
   end
 end
+
+get '/opensearch.xml' do
+  haml :opensearch
+end

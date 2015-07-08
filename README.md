@@ -7,5 +7,6 @@ Smart bookmarks for your browser.
 - Clone this repo
 - Run `bundle install`
 - Run `shotgun`
-- Set the default search engine in your browser to `http://localhost:9393/?q=%s`
+- Visit `http://localhost:9393` (automagically registers as search engine)
+- Go to preferences and makes bunnylol your default search engine.
 - Done!
