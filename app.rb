@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'haml'
+require 'json'
 
 # Edit bunnylol.rb to add more commands!
 
@@ -30,6 +31,7 @@ bunnylol %w(help list h l), help: 'show list of commands' do
 end
 
 require './bunnylol' # include user defined commands
+require './database'
 
 get '/' do
   words = @params.fetch('q') { 'list' }.split

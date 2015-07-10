@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title bookmarks
+  %body
+    %table
+      - @bookmarks.each do |time, url|
+        %tr
+          %td
+            = time
+          %td
+            %a{ href: 'http://' << url }
+              = url
