@@ -35,18 +35,35 @@ register Bunny
 
 helpers Sequel
 
+create_table 'log', query: 'TEXT'
+
+before do
+  @query = @params.fetch('q') { 'list' }
+  sqlite 'INSERT INTO log (query) VALUES (?)', [@query]
+end
+
+get '/opensearch.xml' do
+  haml :opensearch
+end
+
 # Define default commands ...
+
+bunnylol %w(history hist h), help: 'show search history' do
+  @history = sqlite %(
+    SELECT created_at, query
+    FROM log
+    ORDER BY created_at
+    DESC LIMIT 40
+  )
+  haml :history
+end
 
 bunnylol %w(default google gg g), help: 'search on google' do
   base = 'https://www.google.com/search?q='
   redirect base << CGI.escape(@query)
 end
 
-bunnylol %w(help list h l), help: 'show list of commands' do
+bunnylol %w(help list), help: 'show list of commands' do
   @help = Bunny::HELP.sort_by { |name, help| name }
   haml :help
-end
-
-get '/opensearch.xml' do
-  haml :opensearch
 end

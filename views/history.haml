@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title history
+  %body
+    %table
+      - @history.each do |time, query|
+        %tr
+          %td
+            = time
+          %td
+            %a{ href: "#{request.base_url}/?q=#{CGI.escape(query)}" }
+              = query
