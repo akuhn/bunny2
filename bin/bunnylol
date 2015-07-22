@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'cgi'
+`open http://localhost:9393/?q=#{CGI::escape(ARGV.join(' '))}`
