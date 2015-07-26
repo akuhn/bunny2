@@ -1,9 +1,11 @@
 require 'sinatra/base'
 require 'sqlite3'
 
+Dir.mkdir('data') unless File.exist?('data')
+
 module Sequel
 
-  DB = SQLite3::Database.new('bunnylol.sqlite')
+  DB = SQLite3::Database.new('data/bunnylol.sqlite')
 
   def sqlite(query, values = nil)
     Sequel::DB.execute(query, values)
@@ -67,3 +69,8 @@ bunnylol %w(help list), help: 'show list of commands' do
   @help = Bunny::HELP.sort_by { |name, help| name }
   haml :help
 end
+
+# Require custom commands ...
+
+Dir['./lib/*.rb'].each { |file| require file.chomp('.rb') }
+

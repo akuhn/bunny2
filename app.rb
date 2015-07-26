@@ -2,19 +2,18 @@ require 'sinatra'
 require 'haml'
 require 'json'
 
-# Edit bunnylol.rb to add more commands!
+# Edit lib folder to add more commands!
 
 require './bunny'
-require './bunnylol'
 
 get '/' do
 
   @query = @params.fetch('q') { 'list' }
 
-  command = @query.split.first
+  command, arguments = @query.split(' ', 2)
 
   if Bunny::COMMANDS.has_key? command
-    @query = @query.split.drop(1).join(' ')
+    @query = arguments.to_s
   else
     command = 'default'
   end
