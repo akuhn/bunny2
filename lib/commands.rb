@@ -43,3 +43,9 @@ bunnylol %w{dx docs}, help: 'search google documents' do
   redirect base unless @query
   redirect base << '?q=' << CGI.escape(@query)
 end
+
+bunnylol %w{unescape un}, help: 'unescape a url' do
+  unescaped_query = @query
+  3.times { unescaped_query = CGI.unescape(unescaped_query) }
+  redirect unescaped_query
+end
