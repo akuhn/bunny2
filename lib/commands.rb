@@ -49,3 +49,13 @@ bunnylol %w{unescape un}, help: 'unescape a url' do
   3.times { unescaped_query = CGI.unescape(unescaped_query) }
   redirect unescaped_query
 end
+
+bunnylol %w{coin c}, help: 'flip a coin' do
+  @content = %w{head tail}.sample
+  haml :h1
+end
+
+bunnylol %w{d6}, help: 'roll a dice' do
+  @content = "#{(1..6).entries.sample} of 6"
+  haml :h1
+end
