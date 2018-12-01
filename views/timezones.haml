@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title timezones
+    :css
+      table, tr, td {
+        border: 2px silver inset;
+      }
+      td {
+        padding: 8px 16px;
+      }
+      tr.stripe {
+        background-color: gainsboro;
+      }
+  %body
+    %center
+      %table
+        %tr
+          - @timezones.each do |zone|
+            %td
+              = zone.name
+        - @hours.each do |time|
+          %tr{ :class => time.hour.even? && 'stripe' }
+            - @timezones.each do |zone|
+              - local = zone.utc_to_local(time).strftime('%H:00 &mdash; %a, %b %d')
+              %td{ :title => local }
+                = local.gsub(@today, "Today").gsub(@tomorrow, "Tomorrow")
+

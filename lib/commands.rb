@@ -1,4 +1,5 @@
 # Smart commands for your browser
+require 'tzinfo'
 
 create_table 'bookmarks', url: 'TEXT'
 
@@ -12,6 +13,23 @@ bunnylol %w(bookmark book b), help: 'bookmark' do
   )
 
   haml :bookmarks
+end
+
+bunnylol %w{timezones tz}, help: 'view timezone table' do
+  now = Time.now.utc
+  timezone_names = %w{
+    America/Los_Angeles
+    America/New_York
+    Europe/Berlin
+    Asia/Shanghai
+  }
+
+  @timezones = timezone_names.map { |name| TZInfo::Timezone.get(name) }
+  @hours = 72.times.map { |n| now + 3600 * n }
+  @today = @timezones.first.utc_to_local(now).strftime('%a, %b %d')
+  @tomorrow = @timezones.first.utc_to_local(now + 24 * 3600).strftime('%a, %b %d')
+
+  haml :timezones
 end
 
 bunnylol %w(facebook fb), help: 'go to facebook profile' do
